@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Usuarios (StreamWeb)</title>
+    <!-- Enlace al JS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Registra un usuario nuevo 💻</h1>
+        <!-- Formulario para registrar un usuario nuevo -->
+        <form method="POST" action="../controlador/UsuariosController.php">
+            <!-- Añado un input invisible con name 'accion' y value 'registrar' para diferenciar los datos de este formulario de los del resto de formularios en el controlador -->
+            <input type="hidden" name="accion" value="registrar">
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="apellidos" class="form-label">Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+            </div>
+            <div class="mb-3">
+                <label for="edad" class="form-label">Edad:</label>
+                <input type="number" class="form-control" id="edad" name="edad" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="clave" class="form-label">Clave:</label>
+                <input type="password" class="form-control" id="clave" name="clave" required>
+            </div>
+            <!-- Utilizo row y col de bootstrap para organizar las opciones de plan y las opciones de duración de suscripción -->
+            <!-- (En una fila en bootstrap hay 12 columnas) -->
+            <div class="row text-center">
+                <!-- Doy 8 columnas a la selección de planes -->
+                <div class="col-8 mt-2">
+                    <h3 class="mb-3">Elige un plan</h3>
+                    <div class="border rounded p-3 mb-4"
+                        style="width: 250px; display: inline-block; text-align: center;">
+                        <div>
+                            <!-- Establezco el input en radio para que el usuario solo pueda seleccionar un plan -->
+                            <input type="radio" class="btn-check" name="idPlan" value="1" id="planBasico" autocomplete="off">
+                            <!-- (Este input llega al archivo controlador enlazado en el action como $_POST['idPlan'] = 1) -->
+                            <label class="btn btn-outline-primary w-100" for="planBasico">
+                            <!-- (El for="planBasico" enlaza la etiqueta con el input con id="planBasico") -->
+                                <strong>Básico</strong>
+                            </label>
+                        </div>
+                        <div>
+                            <p class="mt-2">9'99€ / mes
+                                <br>(1 dispositivo)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="border rounded p-3 mb-4 ms-3 me-3"
+                        style="width: 250px; display: inline-block; text-align: center;">
+                        <div>
+                            <!-- (Mismo procedimiento que en el div del plan Básico) -->
+                            <input type="radio" class="btn-check" name="idPlan" value="2" id="planEstandar" autocomplete="off" required>
+                            <!-- Llega al controlador como $_POST['idPlan'] = 2 -->
+                            <label class="btn btn-outline-primary w-100" for="planEstandar">
+                            <!-- Enlazo la etiqueta con el input escribiendo el id del input en for="" -->
+                                <strong>Estándar</strong>
+                            </label>
+                        </div>
+                        <div>
+                            <p class="mt-2">13'99€ / mes
+                                <br>(2 dispositivos)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="border rounded p-3 mb-4"
+                        style="width: 250px; display: inline-block; text-align: center;">
+                        <div>
+                            <!-- (Mismo mecanismo que en los div de los anteriores planes) -->
+                            <input type="radio" class="btn-check" name="idPlan" value="3" id="planPremium" autocomplete="off">
+                            <!-- (Llega al controlador como $_POST['idPlan'] == 3) -->
+                            <label class="btn btn-outline-primary w-100" for="planPremium">
+                                <strong>Premium</strong>
+                            </label>
+                        </div>
+                        <div>
+                            <p class="mt-2">17'99€ / mes
+                                <br class="mt-1">(4 dispositivos)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doy 3 columnas a la selección de duración de la suscripción (la columna restante se ocupa con espacios) -->
+                <div class="col-3 mt-5" style="display:inline-block; text-align: center;">
+                    <h4 class="mb-3 mt-3">Elige la duración de la suscripción</h4>
+                    <div>
+                        <!-- Establezco el input en radio para que el usuario solo pueda seleccionar una opción -->
+                        <input type="radio" class="btn-check" name="duracionSuscripcion" value="mensual" id="suscripcionMensual" autocomplete="off" required>
+                        <!-- Si el usuario selecciona esta opción, llega al controlador: $_POST['duracionSuscripcion'] == 'mensual' -->
+                        <label class="btn btn-outline-primary m-1" for="suscripcionMensual" style="width: 100px;">Mensual</label>
+                        <!-- (Uno el input y el label igualando el for al id) -->
+
+                        <input type="radio" class="btn-check" name="duracionSuscripcion" value="anual" id="suscripcionAnual" autocomplete="off">
+                        <!-- Si el usuario selecciona esta opción, llegará $_POST['duracionSuscripcion'] = 'anual' al controlador -->
+                        <label class="btn btn-outline-primary m-1" for="suscripcionAnual" style="width: 100px;">Anual</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Muestro el botón de envío del formulario junto al botón para acceder a la lista de usuarios, ambos centrados debajo del formulario -->
+            <div class="d-flex justify-content-center mt-3">
+                <a href="../vista/listaUsuarios.php" class="btn btn-secondary m-2" style="color: white;">Lista de usuarios</a>
+                <button type="submit" class="btn btn-primary m-2">Registrar usuario</button>
+            </div>
+        </form>
+        <br>
+    </div>
+</body>
+
+</html>
