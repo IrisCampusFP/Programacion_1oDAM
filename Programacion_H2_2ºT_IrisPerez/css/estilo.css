@@ -1,0 +1,56 @@
+/* ARCHIVO CON LOS ESTILOS COMUNES
+(Unifico en un archivo css los estilos comunes entre
+todas las páginas para no repetir código y que quede
+mucho más organizado)
+*/
+
+body {
+    background-color: rgb(233, 245, 255);
+}
+
+h1 {
+    color: rgb(73, 106, 155);
+}
+
+h3 {
+    color: rgb(44, 111, 187);
+}
+
+.form-label {
+    color: rgb(44, 111, 187);
+}
+
+
+.btn-primary {
+    background-color: rgb(73, 106, 155);
+    border-color: rgb(73, 106, 155);
+}
+
+.btn-primary:hover {
+    background-color: rgb(44, 111, 187);
+    border-color: rgb(44, 111, 187);
+}
+
+.btn-secondary {
+    background-color: rgb(179, 217, 255);
+    border-color: rgb(179, 217, 255);
+}
+
+.btn-secondary:hover {
+    background-color: rgb(44, 111, 187);
+    border-color: rgb(44, 111, 187);
+    color: white;
+}
+
+/* Color del fondo de las líneas impares de la tabla
+    (para que se vean azules una si y una no) */
+tbody tr:nth-child(odd) td {
+    background-color:rgb(241, 249, 255);
+}
+
+/* Estilo de los mensajes de error */
+.mensaje {
+    background-color: rgb(179, 217, 255);
+    color: rgb(44, 111, 187);
+    border-color: rgb(44, 111, 187);
+}
